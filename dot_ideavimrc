@@ -1,0 +1,196 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+"" -- Suggested options --
+" Show a few lines of context around the cursor. Note that this makes the
+" text scroll if you mouse-click near the start or end of the window.
+set scrolloff=5
+
+" Do incremental searching.
+set incsearch
+
+set showmode
+set number relativenumber
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+" Navigating back Ctrl o
+" Navigating forward Ctrl I
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+"map <leader>d <Action>(Debug)
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+"""  How to navigate within Curly braces [{
+
+set clipboard+=unnamed
+set clipboard+=ideaput
+
+""" Dont use c to use  clipboard
+nnoremap c "_c
+vnoremap c "_c
+
+""" From visual mode to insert  mode
+xnoremap si <Esc>`<i
+xnoremap ii <Esc>`>i
+
+   """ The leader Key
+let mapleader=" "
+
+""" Always press Esc which will bring you to editor
+
+""" Distraction Free Mode
+
+nnoremap <C-S-d> :action ToggleDistractionFreeMode<CR>
+inoremap <C-S-d> :action ToggleDistractionFreeMode<CR>
+nnoremap <C-S-p> :action TogglePresentationMode<CR>
+inoremap <C-S-p> :action TogglePresentationMode<CR>
+
+""" Terminal  Alt F12 or Alt T => Toggle Terminal
+nmap <leader>t :action Terminal.Toggle<CR>
+
+""" Navigation
+
+
+
+""" Editing source code
+
+set ideajoin
+set idearefactormode=keep
+nnoremap <leader>=  :action ReformatCode<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
+
+
+set incsearch
+
+nmap <C-F5> :action ContextRun<CR>
+imap <C-F5> <Esc>:action ContextRun<CR>
+" Navigation between tabs
+nmap <silent> gt :action NextTab<CR>
+nmap <silent> gT :action PreviousTab<CR>
+
+nmap <silent> <Leader>e :action RecentFiles<CR>
+nmap <silent> <Leader>q :action CloseActiveTab<CR>
+nmap <silent> <Leader>w :action CloseAllTabs<CR>
+nmap <silent> <Leader>1 :action GotoFile<CR>
+" Ctrl Alt R => Run COnfiguration
+" Recent Files  => Cmd E
+" Reload => Shift + Cmd + I
+
+
+nnoremap <leader>cr :action ContextRun<CR>
+nnoremap <leader>fr :action RunClass<CR>
+nnoremap <leader>cc :action ChooseRunConfiguration<CR>
+nnoremap <leader>rtw :action ActivateRunToolWindow<CR>
+nnoremap <leader>rr :action Rerun<CR>
+nnoremap <leader>rf :action Run<CR>
+
+inoremap jj <Esc>
+xnoremap jj <Esc>
+nnoremap <C-S-m> :action ExtractMethod<CR>
+nnoremap <C-S-n> :action Inline<CR>
+nnoremap R :action RenameElement<CR>
+
+
+""" Custom for me
+
+nnoremap <leader>s /public \(abstract \)\?class<CR>
+nnoremap <leader>m /main<CR>
+nnoremap <C-Up> :action MoveLineUp<CR>
+nnoremap <C-Down> :action MoveLineDown<CR>
+nnoremap <C-k> :action MoveLineUp<CR>
+nnoremap <C-j> :action MoveLineDown<CR>
+nnoremap dl :action EditorDuplicate<CR>
+xnoremap dl :action EditorDuplicate<CR>
+nnoremap <C-d> :action EditorDuplicate<CR>
+xnoremap <C-d> :action EditorDuplicate<CR>
+inoremap <C-d> :action EditorDuplicate<CR>
+
+xnoremap <S-Up> k
+xnoremap <S-Down> j
+xnoremap <S-k> k
+xnoremap <S-j> j
+
+" Project window
+nmap <leader>p :action ActivateProjectToolWindow<CR>
+
+" Terminal window
+nmap <leader>t :action ActivateTerminalToolWindow<CR>
+" Go to definition
+nmap <leader>gd :action GotoDeclaration<CR>
+
+" Find all usages
+nmap <leader>fu :action FindUsages<CR>
+
+""" generate shortcuts
+nnoremap <C-g> :action Generate<CR>
+inoremap <C-g> :action Generate<CR>
+nnoremap <leader>re :action Refactorings.QuickListPopupAction<CR>
+xnoremap <leader>re :action Refactorings.QuickListPopupAction<CR>
+
+""" Quick fix
+nmap <leader>q :action ShowIntentionActions<CR>
+nnoremap <C-q> :action ShowIntentionActions<CR>
+inoremap <C-q> :action ShowIntentionActions<CR>
+
+
+"""### shift home select all text until the beginning of the line
+nnoremap <S-Home> v0
+inoremap <S-Home> <C-o>v0
+
+"""### shift end select all text until the end of the line
+nnoremap <S-End> v$
+inoremap <S-End> <C-o>v$
+
+
+nnoremap <S-Right> v<Right>
+nnoremap <S-Left> v<Left>
+nnoremap <S-Up> v<Up>
+nnoremap <S-Down> v<Down>
+inoremap <S-Right> <Esc>v<Right>
+inoremap <S-Left> <Esc>v<Left>
+inoremap <S-Up> <Esc>v<Up>
+inoremap <S-Down> <Esc>v<Down>
+
+nnoremap <S-Right> v<Right>
+nnoremap <S-Left> v<Left>
+nnoremap <S-Up> v<Up>
+nnoremap <S-Down> v<Down>
+inoremap <S-Right> <Esc>v<Right>
+inoremap <S-Left> <Esc>v<Left>
+inoremap <S-Up> <Esc>v<Up>
+inoremap <S-Down> <Esc>v<Down>
+
+""" nnoremap <C-Up> :move .-2<CR>  => neovim
+""" nnoremap <C-Down> :move .-2<CR>  => neovim
+""" Ctrl + [  defines the escape
+
+
+""" Goto top of class
+
+nnoremap \e :e ~/.ideavimrc<CR>
+nnoremap \r :action IdeaVim.ReloadVimRc.reload<CR>
+
+" Find more examples here: https://jb.gg/share-ideavimrc
+Plug 'easymotion/vim-easymotion'
+map <leader>F <Plug>(easymotion-s)
+map <leader>f <Plug>(easymotion-f)
+vnoremap <Tab> >gv
+vnoremap <S-Tab> <gv
+
+
+Plug 'preservim/nerdtree`
+map <c-t>   :NERDTree<CR>
+Plug 'tpope/vim-surround'
+
+" Delete entire word and replace
+
+nnoremap <leader>r "_diwP
+
