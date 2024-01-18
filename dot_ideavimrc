@@ -12,11 +12,13 @@ set incsearch
 set showmode
 set number relativenumber
 
-" Don't use Ex mode, use Q for formatting.
-map Q gq
+
+
 
 " Navigating back Ctrl o
 " Navigating forward Ctrl I
+" go to project window Command 1
+" go to  editor window Command  Esc key
 
 "" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
 "" Map \r to the Reformat Code action
@@ -37,13 +39,13 @@ set clipboard+=ideaput
 nnoremap c "_c
 vnoremap c "_c
 
-""" From visual mode to insert  mode
-xnoremap si <Esc>`<i
-xnoremap ii <Esc>`>i
 
    """ The leader Key
 let mapleader=" "
-
+set ideajoin
+set idearefactormode=keep
+nnoremap <leader>=  :action ReformatCode<CR>
+nnoremap <leader>o :action OptimizeImports<CR>
 """ Always press Esc which will bring you to editor
 
 """ Distraction Free Mode
@@ -53,93 +55,46 @@ inoremap <C-S-d> :action ToggleDistractionFreeMode<CR>
 nnoremap <C-S-p> :action TogglePresentationMode<CR>
 inoremap <C-S-p> :action TogglePresentationMode<CR>
 
-""" Terminal  Alt F12 or Alt T => Toggle Terminal
-nmap <leader>t :action Terminal.Toggle<CR>
+
 
 """ Navigation
+" Improved Navigation
+nnoremap <C-j> :action MoveLineDown<CR>
+nnoremap <C-k> :action MoveLineUp<CR>
 
-
-
-""" Editing source code
-
-set ideajoin
-set idearefactormode=keep
-nnoremap <leader>=  :action ReformatCode<CR>
+" Streamlined Editing
+nnoremap <leader>= :action ReformatCode<CR>
 nnoremap <leader>o :action OptimizeImports<CR>
+nnoremap <leader>d :action EditorDuplicate<CR>
 
+" Efficient Code Execution and Debugging
+nnoremap <C-F5> :action ContextRun<CR>
+nnoremap <leader>cr :action ContextRun<CR>
+nnoremap <leader>db :action Debug<CR>
 
-set incsearch
+" Quick Access to Frequent Actions
+nnoremap <leader>q :action ShowIntentionActions<CR>
+nnoremap <leader>p :action ActivateProjectToolWindow<CR>
+nnoremap <leader>te :action ActivateTerminalToolWindow<CR>
 
-nmap <C-F5> :action ContextRun<CR>
-imap <C-F5> <Esc>:action ContextRun<CR>
-" Navigation between tabs
+" Simplified Tab Navigation
 nmap <silent> gt :action NextTab<CR>
 nmap <silent> gT :action PreviousTab<CR>
 
-nmap <silent> <Leader>e :action RecentFiles<CR>
-nmap <silent> <Leader>q :action CloseActiveTab<CR>
-nmap <silent> <Leader>w :action CloseAllTabs<CR>
-nmap <silent> <Leader>1 :action GotoFile<CR>
-" Ctrl Alt R => Run COnfiguration
-" Recent Files  => Cmd E
-" Reload => Shift + Cmd + I
-
-
-nnoremap <leader>cr :action ContextRun<CR>
-nnoremap <leader>fr :action RunClass<CR>
-nnoremap <leader>cc :action ChooseRunConfiguration<CR>
-nnoremap <leader>rtw :action ActivateRunToolWindow<CR>
-nnoremap <leader>rr :action Rerun<CR>
-nnoremap <leader>rf :action Run<CR>
-
-inoremap jj <Esc>
-xnoremap jj <Esc>
-nnoremap <C-S-m> :action ExtractMethod<CR>
-nnoremap <C-S-n> :action Inline<CR>
-nnoremap R :action RenameElement<CR>
-
-
-""" Custom for me
-
+" Leader key shortcuts for specific searches
 nnoremap <leader>s /public \(abstract \)\?class<CR>
 nnoremap <leader>m /main<CR>
-nnoremap <C-Up> :action MoveLineUp<CR>
-nnoremap <C-Down> :action MoveLineDown<CR>
-nnoremap <C-k> :action MoveLineUp<CR>
-nnoremap <C-j> :action MoveLineDown<CR>
+
+
+
+"  Tab Navigation within windows
+nmap <leader>tn :action NextTab<CR>
+nmap <leader>tp :action PreviousTab<CR>
+
+""" Editing source code
+
 nnoremap dl :action EditorDuplicate<CR>
 xnoremap dl :action EditorDuplicate<CR>
-nnoremap <C-d> :action EditorDuplicate<CR>
-xnoremap <C-d> :action EditorDuplicate<CR>
-inoremap <C-d> :action EditorDuplicate<CR>
-
-xnoremap <S-Up> k
-xnoremap <S-Down> j
-xnoremap <S-k> k
-xnoremap <S-j> j
-
-" Project window
-nmap <leader>p :action ActivateProjectToolWindow<CR>
-
-" Terminal window
-nmap <leader>t :action ActivateTerminalToolWindow<CR>
-" Go to definition
-nmap <leader>gd :action GotoDeclaration<CR>
-
-" Find all usages
-nmap <leader>fu :action FindUsages<CR>
-
-""" generate shortcuts
-nnoremap <C-g> :action Generate<CR>
-inoremap <C-g> :action Generate<CR>
-nnoremap <leader>re :action Refactorings.QuickListPopupAction<CR>
-xnoremap <leader>re :action Refactorings.QuickListPopupAction<CR>
-
-""" Quick fix
-nmap <leader>q :action ShowIntentionActions<CR>
-nnoremap <C-q> :action ShowIntentionActions<CR>
-inoremap <C-q> :action ShowIntentionActions<CR>
-
 
 """### shift home select all text until the beginning of the line
 nnoremap <S-Home> v0
@@ -150,23 +105,9 @@ nnoremap <S-End> v$
 inoremap <S-End> <C-o>v$
 
 
-nnoremap <S-Right> v<Right>
-nnoremap <S-Left> v<Left>
-nnoremap <S-Up> v<Up>
-nnoremap <S-Down> v<Down>
-inoremap <S-Right> <Esc>v<Right>
-inoremap <S-Left> <Esc>v<Left>
-inoremap <S-Up> <Esc>v<Up>
-inoremap <S-Down> <Esc>v<Down>
 
-nnoremap <S-Right> v<Right>
-nnoremap <S-Left> v<Left>
-nnoremap <S-Up> v<Up>
-nnoremap <S-Down> v<Down>
-inoremap <S-Right> <Esc>v<Right>
-inoremap <S-Left> <Esc>v<Left>
-inoremap <S-Up> <Esc>v<Up>
-inoremap <S-Down> <Esc>v<Down>
+
+
 
 """ nnoremap <C-Up> :move .-2<CR>  => neovim
 """ nnoremap <C-Down> :move .-2<CR>  => neovim
@@ -190,7 +131,10 @@ Plug 'preservim/nerdtree`
 map <c-t>   :NERDTree<CR>
 Plug 'tpope/vim-surround'
 
-" Delete entire word and replace
+" Delete ( entire ) word and replace
 
 nnoremap <leader>r "_diwP
 
+noremap <Leader><Leader> :action SearchEverywhere<CR>
+
+" version 1.1
