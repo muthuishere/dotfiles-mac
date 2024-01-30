@@ -69,8 +69,17 @@ nnoremap <leader>d :action EditorDuplicate<CR>
 
 " Efficient Code Execution and Debugging
 nnoremap <C-F5> :action ContextRun<CR>
-nnoremap <leader>cr :action ContextRun<CR>
-nnoremap <leader>db :action Debug<CR>
+inoremap <C-F5> <Esc>:action ContextRun<CR>a
+vnoremap <C-F5> :action ContextRun<CR>
+
+nnoremap <C-S-F5> :action RunClass<CR>
+inoremap <C-S-F5> <Esc>:action RunClass<CR>a
+vnoremap <C-S-F5> :action RunClass<CR>
+
+nnoremap <C-S-F6> :action ChooseRunConfiguration<CR>
+inoremap <C-S-F6> <Esc>:action ChooseRunConfiguration<CR>a
+vnoremap <C-S-F6> :action ChooseRunConfiguration<CR>
+
 
 " Quick Access to Frequent Actions
 nnoremap <leader>q :action ShowIntentionActions<CR>
@@ -82,8 +91,14 @@ nmap <silent> gt :action NextTab<CR>
 nmap <silent> gT :action PreviousTab<CR>
 
 " Leader key shortcuts for specific searches
-nnoremap <leader>s /public \(abstract \)\?class<CR>
+
+nnoremap <leader>s /\<\(public \)\?class<CR>
+
 nnoremap <leader>m /main<CR>
+nmap <C-/> :action CommentByLineComment<CR>
+imap <C-/> <ESC>:action CommentByLineComment<CR>i
+vmap <C-/> :action CommentByLineComment<CR>
+
 
 
 
@@ -128,10 +143,10 @@ vnoremap <S-Tab> <gv
 
 
 Plug 'preservim/nerdtree`
-map <c-t>   :NERDTree<CR>
-Plug 'tpope/vim-surround'
+map <C-t>   :NERDTree<CR>
 
-" Delete ( entire ) word and replace
+
+Plug 'tpope/vim-surround" Delete ( entire ) word and replace
 
 nnoremap <leader>r "_diwP
 
