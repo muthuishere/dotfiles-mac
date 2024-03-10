@@ -71,6 +71,23 @@ nnoremap <leader>d :action EditorDuplicate<CR>
 nnoremap <C-F5> :action ContextRun<CR>
 inoremap <C-F5> <Esc>:action ContextRun<CR>a
 vnoremap <C-F5> :action ContextRun<CR>
+" nnoremap <f5> :action rerun<cr>
+" map <F5> :action FindAction<CR>
+" Insert to normal mode , visual to normal mode
+inoremap jj <Esc>
+
+" Move lines up and down
+nnoremap <C-Up> :m-2<CR>
+nnoremap <C-Down> :m+<CR>
+inoremap <C-Up> <Esc>:m-2<CR>i
+inoremap <C-Down> <Esc>:m+<CR>i
+vnoremap <C-Down> :m+<CR>gv
+vnoremap <C-Up> :m-2<CR>gv
+
+
+map <C-/> :action CommentByLineComment<CR>
+
+    "  Press 0w to move to the  first word of line
 
 nnoremap <C-S-F5> :action RunClass<CR>
 inoremap <C-S-F5> <Esc>:action RunClass<CR>a
@@ -151,5 +168,3 @@ Plug 'tpope/vim-surround" Delete ( entire ) word and replace
 nnoremap <leader>r "_diwP
 
 noremap <Leader><Leader> :action SearchEverywhere<CR>
-
-" version 1.1
